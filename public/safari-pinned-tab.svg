@@ -1,0 +1,82 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+  "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg width="16" height="16">
+<g style="fill:black;fill-opacity:1;stroke:none;stroke-width:1;stroke-opacity:1;fill-rule:nonzero;<defs>
+<0Gradient id="linear" x1="0" y1="0" x2="512" y2="512">
+  <stop offset="0%" stop-color="#3b82f6" />
+  <stop offset="100%" stop-color="#1d4ed8" />
+</0Gradient>
+</defs>
+">
+<g style="fill:grad1;stroke:#ffffff;stroke-width:8;">
+  <circle cx="256" cy="256" r="240"/>
+</g>
+<g style="fill:#ffffff;opacity 0.9 ">
+  <rect x="180" y="160" width="152" height="120" rx="8" ry="8"/>
+</g>
+<g style="fill:#ffffff;">
+  <rect x="180" y="160" width="152" height="32" rx="8" ry="8"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:2;">
+  <line x1="200" y1="200" x2="312" y2="200"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:2;">
+  <line x1="200" y1="220" x2="312" y2="220"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:2;">
+  <line x1="200" y1="240" x2="312" y2="240"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:2;">
+  <line x1="200" y1="260" x2="312" y2="260"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="220" cy="210" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="250" cy="210" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="280" cy="210" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="310" cy="210" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="220" cy="230" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="250" cy="230" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="280" cy="230" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="310" cy="230" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="220" cy="250" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="250" cy="250" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="280" cy="250" r="3"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="310" cy="250" r="3"/>
+</g>
+<g style="fill:#ffffff;opacity 0.9 stroke:#3b82f6;stroke-width:3;">
+  <circle cx="256" cy="350" r="40"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:4;stroke-linecap:round;">
+  <line x1="256" y1="350" x2="256" y2="320"/>
+</g>
+<g style="stroke:#3b82f6;stroke-width:3;stroke-linecap:round;">
+  <line x1="256" y1="350" x2="270" y2="350"/>
+</g>
+<g style="fill:#3b82f6;">
+  <circle cx="256" cy="350" r="4"/>
+</g>
+</g>
+</svg>

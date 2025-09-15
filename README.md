@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Jadwal Kuliah - Course Schedule App
 
-## Getting Started
+Aplikasi web jadwal kuliah dengan desain modern dan minimalis yang terinspirasi dari Apple Reminders. Dibangun menggunakan Next.js 15 dengan App Router, TypeScript, Tailwind CSS, dan shadcn/ui.
 
-First, run the development server:
+## 🎨 Fitur Desain
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Apple Reminders-inspired UI**: Desain minimalis, clean, dan modern
+- **Card-based Layout**: Menggunakan kartu dengan rounded-2xl, soft shadow, dan warna pastel
+- **Typography**: Font besar dan jelas, tidak kaku seperti tabel tradisional
+- **Grid Layout**: Layout berbasis grid yang responsif
+- **Lucide Icons**: Ikon sederhana dan konsisten
+
+## ✨ Fitur Aplikasi
+
+### 1. Dashboard
+- Menampilkan daftar jadwal kuliah dalam bentuk kartu
+- Setiap kartu berisi: Hari, Jam, Nama Mata Kuliah, Ruang, Dosen
+- Hover effects dan animasi smooth
+- Responsive design untuk berbagai ukuran layar
+
+### 2. Filter & Pencarian
+- Filter berdasarkan hari (Senin - Minggu)
+- Filter berdasarkan dosen pengampu
+- Pencarian berdasarkan nama mata kuliah, kode mata kuliah, atau nama dosen
+- Tombol clear untuk menghapus semua filter
+
+### 3. CRUD Operations
+- **Create**: Tambah jadwal kuliah baru
+- **Read**: Lihat daftar jadwal kuliah
+- **Update**: Edit jadwal kuliah yang sudah ada
+- **Delete**: Hapus jadwal kuliah
+
+### 4. Floating Action Button
+- Tombol + (plus) floating di pojok kanan bawah
+- Menggunakan dialog modal untuk form tambah jadwal
+- Desain yang konsisten dengan tema aplikasi
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Next.js 15**: Framework React dengan App Router
+- **TypeScript**: Type safety dan developer experience yang lebih baik
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: Komponen UI modern dan accessible
+- **Lucide React**: Library ikon yang ringan dan konsisten
+
+## 📁 Struktur Project
+
+```
+src/
+├── app/
+│   ├── globals.css          # Global styles dengan custom design tokens
+│   ├── layout.tsx           # Root layout dengan metadata
+│   └── page.tsx             # Home page yang menggunakan Dashboard
+├── components/
+│   ├── ui/                  # shadcn/ui components
+│   ├── dashboard.tsx        # Komponen utama dashboard
+│   └── schedule-form.tsx    # Form untuk CRUD operations
+├── data/
+│   └── sample-data.ts       # Data sample jadwal kuliah
+├── types/
+│   └── schedule.ts          # TypeScript interfaces
+└── lib/
+    └── utils.ts             # Utility functions
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Cara Menjalankan
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Jalankan development server:**
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+3. **Buka browser:**
+   ```
+   http://localhost:3000
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## 📱 Responsive Design
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Aplikasi ini fully responsive dan dapat digunakan di:
+- Desktop (grid 3 kolom)
+- Tablet (grid 2 kolom)
+- Mobile (grid 1 kolom)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Custom Design Tokens
 
-## Deploy on Vercel
+Aplikasi menggunakan custom design tokens yang terinspirasi Apple Reminders:
+- Pastel colors untuk kartu
+- Rounded corners (rounded-2xl)
+- Soft shadows
+- Gradient background
+- Smooth transitions dan hover effects
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📊 Data Sample
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Aplikasi dilengkapi dengan data sample berdasarkan jadwal kuliah semester gasal-1 2025/2026 untuk mahasiswa Teknik Informatika, termasuk:
+- 6 mata kuliah dengan jadwal lengkap
+- Informasi dosen pengampu
+- Detail ruang dan waktu
+- Sistem kredit semester (SKS)
+
+## 🔧 Pengembangan Lebih Lanjut
+
+Aplikasi ini dapat dikembangkan lebih lanjut dengan fitur:
+- Authentication dan user management
+- Database integration (PostgreSQL, MongoDB)
+- Real-time updates
+- Export ke PDF/Excel
+- Notifikasi reminder
+- Dark mode toggle
+- Mobile app dengan React Native
