@@ -63,15 +63,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/MY.png?v=1', sizes: 'any', type: 'image/png' },
+      { url: '/MY.png?v=2', sizes: 'any', type: 'image/png' },
     ],
     apple: [
-      { url: '/MY.png?v=1', sizes: '180x180', type: 'image/png' },
+      { url: '/MY.png?v=2', sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { url: '/MY.png?v=1', sizes: '192x192', type: 'image/png' },
-      { url: '/MY.png?v=1', sizes: '512x512', type: 'image/png' },
+      { url: '/MY.png?v=2', sizes: '192x192', type: 'image/png' },
+      { url: '/MY.png?v=2', sizes: '512x512', type: 'image/png' },
     ],
   },
   manifest: '/site.webmanifest',
@@ -85,9 +84,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/MY.png?v=1" />
+        <link rel="icon" href="/MY.png?v=2" type="image/png" />
+        <link rel="shortcut icon" href="/MY.png?v=2" type="image/png" />
+        <link rel="apple-touch-icon" href="/MY.png?v=2" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Jadwal Kuliah" />
