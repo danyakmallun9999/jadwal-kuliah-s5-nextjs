@@ -14,13 +14,13 @@ import { SettingsTab } from './settings-tab';
 import { BottomNav } from './bottom-nav';
 
 const pastelColors = [
-  'bg-blue-50 border-blue-200',
-  'bg-green-50 border-green-200',
-  'bg-purple-50 border-purple-200',
-  'bg-orange-50 border-orange-200',
-  'bg-pink-50 border-pink-200',
-  'bg-yellow-50 border-yellow-200',
-  'bg-teal-50 border-teal-200',
+  'bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800',
+  'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800',
+  'bg-purple-50 dark:bg-purple-900/20 border-purple-200 dark:border-purple-800',
+  'bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800',
+  'bg-pink-50 dark:bg-pink-900/20 border-pink-200 dark:border-pink-800',
+  'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800',
+  'bg-teal-50 dark:bg-teal-900/20 border-teal-200 dark:border-teal-800',
 ];
 
 // Utility functions for time handling
@@ -152,7 +152,7 @@ export default function Dashboard() {
     switch (status) {
       case 'ongoing':
         return (
-          <div className="flex items-center gap-1 text-xs font-medium text-green-700 bg-green-100 px-2 py-1 rounded-full">
+          <div className="flex items-center gap-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 px-2 py-1 rounded-full">
             <PlayCircle className="h-3 w-3" />
             Sedang Berlangsung
           </div>
@@ -162,20 +162,20 @@ export default function Dashboard() {
         const classTime = parseTime(schedule.time);
         const minutesUntil = classTime - currentTime;
         return (
-          <div className="flex items-center gap-1 text-xs font-medium text-orange-700 bg-orange-100 px-2 py-1 rounded-full">
+          <div className="flex items-center gap-1 text-xs font-medium text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30 px-2 py-1 rounded-full">
             <Bell className="h-3 w-3" />
             {minutesUntil} menit lagi
           </div>
         );
       case 'today':
         return (
-          <div className="text-xs font-medium text-blue-700 bg-blue-100 px-2 py-1 rounded-full">
+          <div className="text-xs font-medium text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/30 px-2 py-1 rounded-full">
             Hari Ini
           </div>
         );
       case 'finished':
         return (
-          <div className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+          <div className="text-xs font-medium text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full">
             Selesai
           </div>
         );
@@ -267,21 +267,21 @@ export default function Dashboard() {
         return (
           <>
             {/* View Toggle & Filters */}
-            <Card className="mb-8 rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+            <Card className="mb-8 rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex flex-col gap-4">
                   {/* Filter Section */}
                   <div className="w-full">
                     <div className="flex items-center gap-2 mb-4">
-                      <Filter className="h-5 w-5 text-gray-500" />
-                      <span className="font-medium text-gray-700">Filter:</span>
+                      <Filter className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      <span className="font-medium text-gray-700 dark:text-gray-300">Filter:</span>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                       <Select
                         value={filters.day || 'all'}
                         onValueChange={(value) => setFilters(prev => ({ ...prev, day: value === 'all' ? undefined : value }))}
                       >
-                        <SelectTrigger className="w-full rounded-xl border-gray-200">
+                        <SelectTrigger className="w-full rounded-xl border-gray-200 dark:border-gray-600">
                           <SelectValue placeholder="Hari" />
                         </SelectTrigger>
                         <SelectContent>
@@ -296,7 +296,7 @@ export default function Dashboard() {
                         value={filters.lecturer || 'all'}
                         onValueChange={(value) => setFilters(prev => ({ ...prev, lecturer: value === 'all' ? undefined : value }))}
                       >
-                        <SelectTrigger className="w-full rounded-xl border-gray-200">
+                        <SelectTrigger className="w-full rounded-xl border-gray-200 dark:border-gray-600">
                           <SelectValue placeholder="Dosen" />
                         </SelectTrigger>
                         <SelectContent>
@@ -313,7 +313,7 @@ export default function Dashboard() {
                         placeholder="Cari mata kuliah..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full rounded-xl border-gray-200"
+                        className="w-full rounded-xl border-gray-200 dark:border-gray-600"
                       />
 
                       {(filters.day || filters.lecturer || searchTerm) && (
@@ -321,7 +321,7 @@ export default function Dashboard() {
                           variant="outline"
                           size="default"
                           onClick={clearFilters}
-                          className="w-full rounded-xl border-gray-200 h-10"
+                          className="w-full rounded-xl border-gray-200 dark:border-gray-600 h-10"
                         >
                           <X className="h-4 w-4 mr-2" />
                           Clear
@@ -332,7 +332,7 @@ export default function Dashboard() {
 
                   {/* View Toggle Section */}
                   <div className="flex justify-center sm:justify-end mt-2">
-                    <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg">
+                    <div className="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 p-1 rounded-lg">
                       <Button
                         variant={viewMode === 'cards' ? 'default' : 'ghost'}
                         size="sm"
@@ -367,15 +367,15 @@ export default function Dashboard() {
                   >
                     <CardHeader className="pb-3">
                       <div className="flex items-center justify-between mb-2">
-                        <CardTitle className="text-lg font-semibold text-gray-800">
+                        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                           {schedule.courseName}
                         </CardTitle>
-                        <span className="text-xs font-medium text-gray-500 bg-white/60 px-2 py-1 rounded-full">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400 bg-white/60 dark:bg-gray-700/60 px-2 py-1 rounded-full">
                           {schedule.credits} SKS
                         </span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <p className="text-sm text-gray-600 font-mono">
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-mono">
                           {schedule.courseCode} • {schedule.class}
                         </p>
                         {getStatusBadge(schedule)}
@@ -383,23 +383,23 @@ export default function Dashboard() {
                     </CardHeader>
                     
                     <CardContent className="space-y-3">
-                      <div className="flex items-center gap-3 text-sm text-gray-700">
-                        <Calendar className="h-4 w-4 text-gray-500" />
+                      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                        <Calendar className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                         <span className="font-medium">{schedule.day}</span>
                       </div>
                       
-                      <div className="flex items-center gap-3 text-sm text-gray-700">
-                        <Clock className="h-4 w-4 text-gray-500" />
+                      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                        <Clock className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                         <span className="font-medium">{schedule.time}</span>
                       </div>
                       
-                      <div className="flex items-center gap-3 text-sm text-gray-700">
-                        <MapPin className="h-4 w-4 text-gray-500" />
+                      <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                        <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                         <span>{schedule.room}</span>
                       </div>
                       
-                      <div className="flex items-start gap-3 text-sm text-gray-700">
-                        <User className="h-4 w-4 text-gray-500 mt-0.5" />
+                      <div className="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+                        <User className="h-4 w-4 text-gray-500 dark:text-gray-400 mt-0.5" />
                         <span className="leading-relaxed">{schedule.lecturer}</span>
                       </div>
                     </CardContent>
@@ -407,13 +407,13 @@ export default function Dashboard() {
                 ))}
 
                 {filteredSchedules.length === 0 && (
-                  <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+                  <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                     <CardContent className="p-12 text-center">
-                      <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-lg font-medium text-gray-600 mb-2">
+                      <Calendar className="h-12 w-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+                      <h3 className="text-lg font-medium text-gray-600 dark:text-gray-400 mb-2">
                         Tidak ada jadwal ditemukan
                       </h3>
-                      <p className="text-gray-500">
+                      <p className="text-gray-500 dark:text-gray-500">
                         Coba ubah filter atau kata kunci pencarian
                       </p>
                     </CardContent>
@@ -421,20 +421,20 @@ export default function Dashboard() {
                 )}
               </div>
             ) : (
-              <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
                   <div className="min-w-[800px]">
                     {/* Calendar Header */}
-                    <div className="grid grid-cols-7 border-b">
-                      <div className="p-4 bg-gray-50 border-r">
-                        <span className="text-sm font-medium text-gray-600">Waktu</span>
+                    <div className="grid grid-cols-7 border-b dark:border-gray-600">
+                      <div className="p-4 bg-gray-50 dark:bg-gray-700 border-r dark:border-gray-600">
+                        <span className="text-sm font-medium text-gray-600 dark:text-gray-300">Waktu</span>
                       </div>
                       {weekDays.map(day => (
-                        <div key={day} className="p-4 bg-gray-50 border-r last:border-r-0">
+                        <div key={day} className="p-4 bg-gray-50 dark:bg-gray-700 border-r dark:border-gray-600 last:border-r-0">
                           <div className="text-center">
-                            <span className="text-sm font-medium text-gray-800">{day}</span>
+                            <span className="text-sm font-medium text-gray-800 dark:text-gray-200">{day}</span>
                             {day === getCurrentDay() && (
-                              <div className="w-2 h-2 bg-blue-500 rounded-full mx-auto mt-1"></div>
+                              <div className="w-2 h-2 bg-blue-500 dark:bg-blue-400 rounded-full mx-auto mt-1"></div>
                             )}
                           </div>
                         </div>
@@ -443,10 +443,10 @@ export default function Dashboard() {
 
                     {/* Calendar Body */}
                     {timeSlots.map(timeSlot => (
-                      <div key={timeSlot} className="grid grid-cols-7 border-b last:border-b-0">
+                      <div key={timeSlot} className="grid grid-cols-7 border-b dark:border-gray-600 last:border-b-0">
                         {/* Time Column */}
-                        <div className="p-3 bg-gray-50 border-r">
-                          <span className="text-sm text-gray-600">{timeSlot}</span>
+                        <div className="p-3 bg-gray-50 dark:bg-gray-700 border-r dark:border-gray-600">
+                          <span className="text-sm text-gray-600 dark:text-gray-300">{timeSlot}</span>
                         </div>
                         
                         {/* Day Columns */}
@@ -455,7 +455,7 @@ export default function Dashboard() {
                           const duration = schedule ? getClassDuration(schedule.time) : 1;
                           
                           return (
-                            <div key={`${day}-${timeSlot}`} className="border-r last:border-r-0 min-h-[60px] relative">
+                            <div key={`${day}-${timeSlot}`} className="border-r dark:border-gray-600 last:border-r-0 min-h-[60px] relative">
                               {schedule && (
                                 <div 
                                   className={`absolute inset-x-1 top-1 rounded-lg p-2 text-xs ${getCardStyling(schedule, 0)} transition-all duration-200 hover:shadow-md cursor-pointer`}
@@ -465,13 +465,13 @@ export default function Dashboard() {
                                   }}
                                   title={`${schedule.courseName} - ${schedule.lecturer}`}
                                 >
-                                  <div className="font-semibold text-gray-800 mb-1 leading-tight">
+                                  <div className="font-semibold text-gray-800 dark:text-gray-200 mb-1 leading-tight">
                                     {schedule.courseName}
                                   </div>
-                                  <div className="text-gray-600 mb-1">
+                                  <div className="text-gray-600 dark:text-gray-300 mb-1">
                                     {schedule.time}
                                   </div>
-                                  <div className="text-gray-600">
+                                  <div className="text-gray-600 dark:text-gray-300">
                                     {schedule.room}
                                   </div>
                                   {getStatusBadge(schedule) && (
@@ -507,7 +507,7 @@ export default function Dashboard() {
       case 'stats':
         return (
           <>
-            <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-6">
               Statistik Semester
             </h2>
             {(() => {
@@ -516,51 +516,51 @@ export default function Dashboard() {
                 <div className="space-y-6">
                   {/* Main Stats Cards */}
                   <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-blue-50 to-blue-100">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm text-blue-600 font-medium">Total SKS</p>
-                            <p className="text-2xl font-bold text-blue-800">{stats.totalSKS}</p>
+                            <p className="text-sm text-blue-600 dark:text-blue-400 font-medium">Total SKS</p>
+                            <p className="text-2xl font-bold text-blue-800 dark:text-blue-300">{stats.totalSKS}</p>
                           </div>
-                          <BookOpen className="h-8 w-8 text-blue-600" />
+                          <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-green-50 to-green-100">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm text-green-600 font-medium">Total Mata Kuliah</p>
-                            <p className="text-2xl font-bold text-green-800">{stats.totalClasses}</p>
+                            <p className="text-sm text-green-600 dark:text-green-400 font-medium">Total Mata Kuliah</p>
+                            <p className="text-2xl font-bold text-green-800 dark:text-green-300">{stats.totalClasses}</p>
                           </div>
-                          <Calendar className="h-8 w-8 text-green-600" />
+                          <Calendar className="h-8 w-8 text-green-600 dark:text-green-400" />
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-purple-50 to-purple-100">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm text-purple-600 font-medium">Hari Tersibuk</p>
-                            <p className="text-lg font-bold text-purple-800">{stats.busiestDay.day}</p>
-                            <p className="text-xs text-purple-600">{stats.busiestDay.count} kelas</p>
+                            <p className="text-sm text-purple-600 dark:text-purple-400 font-medium">Hari Tersibuk</p>
+                            <p className="text-lg font-bold text-purple-800 dark:text-purple-300">{stats.busiestDay.day}</p>
+                            <p className="text-xs text-purple-600 dark:text-purple-400">{stats.busiestDay.count} kelas</p>
                           </div>
-                          <TrendingUp className="h-8 w-8 text-purple-600" />
+                          <TrendingUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                         </div>
                       </CardContent>
                     </Card>
 
-                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-orange-50 to-orange-100">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-gradient-to-r from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="text-sm text-orange-600 font-medium">Rata-rata Durasi</p>
-                            <p className="text-2xl font-bold text-orange-800">{stats.avgDuration.toFixed(1)}h</p>
+                            <p className="text-sm text-orange-600 dark:text-orange-400 font-medium">Rata-rata Durasi</p>
+                            <p className="text-2xl font-bold text-orange-800 dark:text-orange-300">{stats.avgDuration.toFixed(1)}h</p>
                           </div>
-                          <Clock className="h-8 w-8 text-orange-600" />
+                          <Clock className="h-8 w-8 text-orange-600 dark:text-orange-400" />
                         </div>
                       </CardContent>
                     </Card>
@@ -569,23 +569,23 @@ export default function Dashboard() {
                   {/* Detailed Stats */}
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Classes per Day */}
-                    <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                       <CardHeader>
-                        <CardTitle className="text-lg font-semibold text-gray-800">Distribusi Kelas per Hari</CardTitle>
+                        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-200">Distribusi Kelas per Hari</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-3">
                           {weekDays.map(day => (
                             <div key={day} className="flex items-center justify-between">
-                              <span className="text-sm font-medium text-gray-700">{day}</span>
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{day}</span>
                               <div className="flex items-center gap-2">
-                                <div className="w-20 bg-gray-200 rounded-full h-2">
+                                <div className="w-20 bg-gray-200 dark:bg-gray-600 rounded-full h-2">
                                   <div 
-                                    className="bg-blue-500 h-2 rounded-full transition-all duration-300"
+                                    className="bg-blue-500 dark:bg-blue-400 h-2 rounded-full transition-all duration-300"
                                     style={{ width: `${(stats.classesPerDay[day] / Math.max(...Object.values(stats.classesPerDay))) * 100}%` }}
                                   />
                                 </div>
-                                <span className="text-sm text-gray-600 w-8 text-right">{stats.classesPerDay[day]}</span>
+                                <span className="text-sm text-gray-600 dark:text-gray-400 w-8 text-right">{stats.classesPerDay[day]}</span>
                               </div>
                             </div>
                           ))}
@@ -594,32 +594,32 @@ export default function Dashboard() {
                     </Card>
 
                     {/* Time Distribution */}
-                    <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+                    <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
                       <CardHeader>
-                        <CardTitle className="text-lg font-semibold text-gray-800">Distribusi Waktu</CardTitle>
+                        <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-200">Distribusi Waktu</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <div className="space-y-4">
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                              <span className="text-sm font-medium text-gray-700">Pagi (07:00-12:00)</span>
+                              <div className="w-3 h-3 bg-yellow-400 dark:bg-yellow-500 rounded-full"></div>
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Pagi (07:00-12:00)</span>
                             </div>
-                            <span className="text-sm text-gray-600">{stats.timeDistribution.morning} kelas</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">{stats.timeDistribution.morning} kelas</span>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 bg-orange-400 rounded-full"></div>
-                              <span className="text-sm font-medium text-gray-700">Siang (12:00-17:00)</span>
+                              <div className="w-3 h-3 bg-orange-400 dark:bg-orange-500 rounded-full"></div>
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Siang (12:00-17:00)</span>
                             </div>
-                            <span className="text-sm text-gray-600">{stats.timeDistribution.afternoon} kelas</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">{stats.timeDistribution.afternoon} kelas</span>
                           </div>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2">
-                              <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                              <span className="text-sm font-medium text-gray-700">Sore (17:00+)</span>
+                              <div className="w-3 h-3 bg-blue-400 dark:bg-blue-500 rounded-full"></div>
+                              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Sore (17:00+)</span>
                             </div>
-                            <span className="text-sm text-gray-600">{stats.timeDistribution.evening} kelas</span>
+                            <span className="text-sm text-gray-600 dark:text-gray-400">{stats.timeDistribution.evening} kelas</span>
                           </div>
                         </div>
                       </CardContent>
@@ -638,7 +638,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6 pb-24">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800 p-6 pb-24">
       <div className="max-w-7xl mx-auto">
         {renderContent()}
         <BottomNav activeTab={activeTab} onTabChange={setActiveTab} />

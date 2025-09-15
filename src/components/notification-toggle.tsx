@@ -73,20 +73,20 @@ export function NotificationToggle({ variant = 'default' }: NotificationTogglePr
   const getButtonStyle = () => {
     if (variant === 'white') {
       return notificationsEnabled
-        ? "bg-white text-blue-600 hover:bg-gray-100 border-0"
-        : "bg-white/10 text-white hover:bg-white/20 border-white/20";
+        ? "bg-white text-blue-600 hover:bg-gray-100 border-0 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
+        : "bg-white/10 text-white hover:bg-white/20 border-white/20 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-600/50";
     }
 
     if (variant === 'card') {
       return notificationsEnabled
-        ? "bg-blue-500 hover:bg-blue-600 text-white border-0"
-        : "bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-200";
+        ? "bg-blue-500 hover:bg-blue-600 text-white border-0 dark:bg-blue-600 dark:hover:bg-blue-700"
+        : "bg-gray-100 hover:bg-gray-200 text-gray-700 border-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300 dark:border-gray-600";
     }
 
     // default variant
     return notificationsEnabled
-      ? "bg-green-500 hover:bg-green-600 text-white border-0"
-      : "bg-white/10 text-white hover:bg-white/20 border-white/20";
+      ? "bg-green-500 hover:bg-green-600 text-white border-0 dark:bg-green-600 dark:hover:bg-green-700"
+      : "bg-white/10 text-white hover:bg-white/20 border-white/20 dark:bg-gray-700/50 dark:text-gray-300 dark:hover:bg-gray-600/50";
   };
 
   if (!supported) {

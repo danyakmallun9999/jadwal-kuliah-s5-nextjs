@@ -28,16 +28,57 @@ export function HomeTab({
     getClassStatus(schedule) === 'ongoing'
   );
 
+  // Dynamic greeting based on time
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      return 'Selamat Pagi';
+    } else if (hour >= 12 && hour < 15) {
+      return 'Selamat Siang';
+    } else if (hour >= 15 && hour < 18) {
+      return 'Selamat Sore';
+    } else {
+      return 'Selamat Malam';
+    }
+  };
+
+  // Get current date and time
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    return now.toLocaleDateString('id-ID', options);
+  };
+
   return (
     <div className="space-y-6">
+      {/* Greeting Card */}
+      <div className="bg-gradient-to-br from-indigo-500 to-purple-600 dark:from-indigo-600 dark:to-purple-700 text-white rounded-2xl p-6 shadow-lg">
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-2">
+            {getGreeting()}! 👋
+          </h1>
+          <h2 className="text-xl font-semibold mb-1">
+            Dany Akmallun Niam
+          </h2>
+          <p className="text-indigo-100 dark:text-indigo-200 text-lg">
+            {getCurrentDateTime()}
+          </p>
+        </div>
+      </div>
+
       {/* Today's Overview */}
-      <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl p-6 shadow-lg">
+      <div className="bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 text-white rounded-2xl p-6 shadow-lg">
         <div className="flex items-start justify-between mb-4">
           <div>
             <h2 className="text-2xl font-bold mb-1">
               {currentDay}
             </h2>
-            <p className="text-blue-100">
+            <p className="text-blue-100 dark:text-blue-200">
               {todaySchedules.length} kelas hari ini
             </p>
           </div>
@@ -45,35 +86,35 @@ export function HomeTab({
         </div>
 
         {todaySchedules.length === 0 ? (
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4">
+          <div className="bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-xl p-4">
             <p className="text-lg font-medium">
               Tidak ada jadwal hari ini
             </p>
-            <p className="text-blue-100">
+            <p className="text-blue-100 dark:text-blue-200">
               Selamat beristirahat! 🎉
             </p>
           </div>
         ) : (
           <div className="space-y-2">
             {ongoingClass && (
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border-l-4 border-green-400 animate-pulse">
-                <div className="flex items-center gap-2 text-green-300 text-sm mb-1">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-xl p-4 border-l-4 border-green-400 dark:border-green-300 animate-pulse">
+                <div className="flex items-center gap-2 text-green-300 dark:text-green-200 text-sm mb-1">
                   <Clock className="h-4 w-4" />
                   <span>Sedang Berlangsung</span>
                 </div>
                 <p className="text-lg font-medium mb-1">{ongoingClass.courseName}</p>
-                <p className="text-blue-100">{ongoingClass.time} • {ongoingClass.room}</p>
+                <p className="text-blue-100 dark:text-blue-200">{ongoingClass.time} • {ongoingClass.room}</p>
               </div>
             )}
             
             {nextClass && (
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-4 border-l-4 border-orange-400">
-                <div className="flex items-center gap-2 text-orange-300 text-sm mb-1">
+              <div className="bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-xl p-4 border-l-4 border-orange-400 dark:border-orange-300">
+                <div className="flex items-center gap-2 text-orange-300 dark:text-orange-200 text-sm mb-1">
                   <Clock className="h-4 w-4" />
                   <span>Kelas Berikutnya</span>
                 </div>
                 <p className="text-lg font-medium mb-1">{nextClass.courseName}</p>
-                <p className="text-blue-100">{nextClass.time} • {nextClass.room}</p>
+                <p className="text-blue-100 dark:text-blue-200">{nextClass.time} • {nextClass.room}</p>
               </div>
             )}
           </div>
@@ -83,7 +124,7 @@ export function HomeTab({
       {/* Today's Schedule */}
       {todaySchedules.length > 0 && (
         <div>
-          <h3 className="text-lg font-semibold text-gray-800 mb-4">
+          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">
             Jadwal Hari Ini
           </h3>
           <div className="space-y-4">
@@ -94,15 +135,15 @@ export function HomeTab({
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-center justify-between mb-2">
-                    <CardTitle className="text-lg font-semibold text-gray-800">
+                    <CardTitle className="text-lg font-semibold text-gray-800 dark:text-gray-200">
                       {schedule.courseName}
                     </CardTitle>
-                    <span className="text-xs font-medium text-gray-500 bg-white/60 px-2 py-1 rounded-full">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 bg-white/60 dark:bg-gray-700/60 px-2 py-1 rounded-full">
                       {schedule.credits} SKS
                     </span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <p className="text-sm text-gray-600 font-mono">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 font-mono">
                       {schedule.courseCode} • {schedule.class}
                     </p>
                     {getStatusBadge(schedule)}
@@ -110,18 +151,18 @@ export function HomeTab({
                 </CardHeader>
                 
                 <CardContent className="space-y-3">
-                  <div className="flex items-center gap-3 text-sm text-gray-700">
-                    <Clock className="h-4 w-4 text-gray-500" />
+                  <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                    <Clock className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                     <span className="font-medium">{schedule.time}</span>
                   </div>
                   
-                  <div className="flex items-center gap-3 text-sm text-gray-700">
-                    <MapPin className="h-4 w-4 text-gray-500" />
+                  <div className="flex items-center gap-3 text-sm text-gray-700 dark:text-gray-300">
+                    <MapPin className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                     <span>{schedule.room}</span>
                   </div>
                   
-                  <div className="flex items-start gap-3 text-sm text-gray-700">
-                    <User className="h-4 w-4 text-gray-500 mt-0.5" />
+                  <div className="flex items-start gap-3 text-sm text-gray-700 dark:text-gray-300">
+                    <User className="h-4 w-4 text-gray-500 dark:text-gray-400 mt-0.5" />
                     <span className="leading-relaxed">{schedule.lecturer}</span>
                   </div>
                 </CardContent>

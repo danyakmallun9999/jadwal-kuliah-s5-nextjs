@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
@@ -13,10 +13,31 @@ export function SettingsTab() {
   const [darkMode, setDarkMode] = useState(false);
   const [exporting, setExporting] = useState(false);
 
-  const handleDarkModeToggle = () => {
-    setDarkMode(!darkMode);
+  // Load dark mode preference from localStorage on mount
+  useEffect(() => {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    setDarkMode(savedDarkMode);
+    
+    // Apply dark mode class if needed
+    if (savedDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, []);
+
+  const handleDarkModeToggle = (checked: boolean) => {
+    setDarkMode(checked);
+    
+    // Save to localStorage
+    localStorage.setItem('darkMode', checked.toString());
+    
     // Toggle dark mode class on document root
-    document.documentElement.classList.toggle('dark');
+    if (checked) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const exportToPDF = async () => {
@@ -128,15 +149,15 @@ export function SettingsTab() {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 flex items-center gap-2">
         <Info className="h-6 w-6" />
         Pengaturan
       </h2>
 
       {/* Notifications */}
-      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-gray-800">
+          <CardTitle className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
             <Bell className="h-5 w-5" />
             Notifikasi
           </CardTitle>
@@ -144,8 +165,8 @@ export function SettingsTab() {
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-gray-800">Status Notifikasi</p>
-              <p className="text-sm text-gray-600">Aktifkan pengingat jadwal kuliah</p>
+              <p className="font-medium text-gray-800 dark:text-gray-200">Status Notifikasi</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Aktifkan pengingat jadwal kuliah</p>
             </div>
             <NotificationToggle variant="card" />
           </div>
@@ -153,9 +174,9 @@ export function SettingsTab() {
       </Card>
 
       {/* Export */}
-      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-gray-800">
+          <CardTitle className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
             <Download className="h-5 w-5" />
             Export Jadwal
           </CardTitle>
@@ -182,9 +203,9 @@ export function SettingsTab() {
       </Card>
 
       {/* Theme */}
-      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-gray-800">
+          <CardTitle className="flex items-center gap-2 text-gray-800 dark:text-gray-200">
             {darkMode ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
             Tampilan
           </CardTitle>
@@ -192,8 +213,8 @@ export function SettingsTab() {
         <CardContent>
           <div className="flex items-center justify-between">
             <div>
-              <p className="font-medium text-gray-800">Dark Mode</p>
-              <p className="text-sm text-gray-600">Ubah tema aplikasi</p>
+              <p className="font-medium text-gray-800 dark:text-gray-200">Dark Mode</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400">Ubah tema aplikasi</p>
             </div>
             <Switch
               checked={darkMode}
@@ -205,12 +226,12 @@ export function SettingsTab() {
       </Card>
 
       {/* About */}
-      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="rounded-2xl shadow-sm border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
         <CardContent className="pt-6">
           <div className="text-center space-y-2">
-            <p className="text-gray-800 font-medium">Jadwal Kuliah</p>
-            <p className="text-sm text-gray-600">Versi 1.0.0</p>
-            <p className="text-xs text-gray-500">© 2025 AI Assistant</p>
+            <p className="text-gray-800 dark:text-gray-200 font-medium">Jadwal Kuliah</p>
+            <p className="text-sm text-gray-600 dark:text-gray-400">Versi 1.0.0</p>
+            <p className="text-xs text-gray-500 dark:text-gray-500">© 2025 AI Assistant</p>
           </div>
         </CardContent>
       </Card>
